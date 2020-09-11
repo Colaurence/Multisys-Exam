@@ -21,12 +21,12 @@ class SuccessOrderTest extends TestCase
         $headers = ['Authorization' => "Bearer $token"
                    ];
         
-        $placeholder = [
+        $formData = [
             'product_id' => 2,
             'quantity' => 3,
         ];
 
-        $response = $this->post('/api/orders', $placeholder, $headers);
+        $response = $this->post('/api/orders', $formData, $headers);
         
         if($response->getStatusCode() == 400){
             $response->assertStatus(400)

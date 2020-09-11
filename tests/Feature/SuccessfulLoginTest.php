@@ -23,9 +23,9 @@ class TestSuccessfulLogin extends TestCase
                 'password' => bcrypt('password'),
             ]);
         }
-        $placeholder = ['email' => 'backend@multisyscorp.com',
+        $formData = ['email' => 'backend@multisyscorp.com',
                         'password' => 'password'];
-        $response = $this->post('/api/login', $placeholder);
+        $response = $this->post('/api/login', $formData);
 
         $response->assertStatus(200)
                     ->assertJsonStructure([

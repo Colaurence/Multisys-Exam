@@ -16,13 +16,13 @@ class SuccessfulRegisterTest extends TestCase
      */
     public function testSuccessfulRegister()
     {
-        $placeholder = [
+        $formData = [
             'email' =>  $this->faker->unique()->safeEmail,
             'password' => 'password',
             'password_confirmation' => 'password',
         ];
 
-        $response = $this->post('/api/register', $placeholder);
+        $response = $this->post('/api/register', $formData);
         $response->assertStatus(201)
                  ->assertJson([
                     'message' => 'User successfully registered' 

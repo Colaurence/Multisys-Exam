@@ -28,11 +28,3 @@ $factory->define(User::class, function (Faker $faker) {
         'email_verified_at' => now(),
     ];
 });
-
-
-$factory->define(Product::class, function (Faker $faker) {
-    return [
-        'name' => $faker->name,
-        'Available_Stock' => rand(10, 100),
-    ];
-});

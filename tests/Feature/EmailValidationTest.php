@@ -17,7 +17,7 @@ class EmailValidationTest extends TestCase
     public function testEmailValidation()
     {
         $user = User::find(1);
-        $placeholder = [
+        $formData = [
             'email' => $user->email,
             'password' => 'password',
             'password_confirmation' => 'password',
@@ -25,7 +25,7 @@ class EmailValidationTest extends TestCase
 
         $headers = ['accept' => 'application/json'];
 
-        $response = $this->post('/api/register', $placeholder, $headers);
+        $response = $this->post('/api/register', $formData, $headers);
         $response->assertStatus(400)
                  ->assertJson([
                     'message' => 'The given data was invalid.'

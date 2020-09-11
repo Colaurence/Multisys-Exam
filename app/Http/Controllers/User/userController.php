@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\User;
+
+use App\Jobs\UserVerifyJob;
 use Illuminate\Http\Request;
 use App\Mail\UserVerification;
 use Illuminate\Support\Facades\Mail;
@@ -23,8 +25,10 @@ class userController extends ApiController
         $user = new User;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
+        
+        
         $user->save();
-
+        dispatch(new UserVerifyJob($user));
         if($rules){
             return $this->ApiResponse('User successfully registered',201);
         }
